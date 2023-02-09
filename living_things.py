@@ -16,7 +16,7 @@ class Life:
         self.turning_speed = turning_speed
 
     def move(self, framerate: float):
-        #self.orientation = self.orientation + self.turning_speed
+        self.orientation = self.orientation + self.turning_speed
         self.x += framerate*math.cos(math.radians(self.orientation))*self.speed
         self.y += framerate*math.sin(math.radians(self.orientation))*self.speed
 

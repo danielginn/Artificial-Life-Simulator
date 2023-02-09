@@ -36,3 +36,9 @@ class TestLife(TestCase):
         blob.move(self.framerate)
         self.assertAlmostEqual(blob.x, 1.414, 3)
         self.assertAlmostEqual(blob.y, 1.414, 3)
+
+    def test_should_turn_45_degrees(self):
+        blob = Life(x=0, y=0, orientation=0, speed=1, turning_speed=45)
+        blob.move(self.framerate)
+        self.assertAlmostEqual(blob.x, 0.707, 3)
+        self.assertAlmostEqual(blob.y, 0.707, 3)
