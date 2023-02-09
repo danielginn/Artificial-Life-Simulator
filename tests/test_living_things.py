@@ -86,3 +86,13 @@ class TestLife(TestCase):
         self.assertAlmostEqual(blob.turning_speed, 10, 1)
         blob.turn(new_turn_speed=-50)
         self.assertAlmostEqual(blob.turning_speed, -10, 1)
+
+    def test_speed_should_be_10(self):
+        blob = Life(x=0, y=0, heading=0, turning_speed=0)
+        blob.set_speed(new_speed=10)
+        self.assertAlmostEqual(blob.speed, 10, 1)
+
+    def test_speed_should_be_less_than_speed_of_light(self):
+        blob = Life(x=0, y=0, heading=0, turning_speed=0)
+        blob.set_speed(new_speed=500000000)
+        self.assertAlmostEqual(blob.speed, 299792458, 1)
