@@ -1,7 +1,7 @@
 import math
 import helper_functions
 
-class Life:
+class Movement:
 
     def __init__(self, x: float, y: float, heading: float, max_turn_speed: float = 360, max_speed: float = 299792458):
         self.x = x  # in meters
