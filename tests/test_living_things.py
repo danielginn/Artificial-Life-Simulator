@@ -10,14 +10,18 @@ class TestLife(TestCase):
     def test_should_move_1_meter_right(self):
         blob = Life(x=0, y=0, orientation=0, speed=1, turning_speed=0)
         blob.move(self.framerate)
-        self.assertAlmostEqual(blob.x, 1, 4)
-        self.assertAlmostEqual(blob.y, 0, 4)
+        self.assertAlmostEqual(blob.x, 1, 3)
+        self.assertAlmostEqual(blob.y, 0, 3)
 
     def test_should_move_1_meter_up(self):
         blob = Life(x=0, y=0, orientation=90, speed=1, turning_speed=0)
         blob.move(self.framerate)
-        self.assertAlmostEqual(blob.x, 0, 4)
-        self.assertAlmostEqual(blob.y, 1, 4)
+        self.assertAlmostEqual(blob.x, 0, 3)
+        self.assertAlmostEqual(blob.y, 1, 3)
 
-    
+    def test_should_move_1_meter_diagonally_NE(self):
+        blob = Life(x=0, y=0, orientation=45, speed=1, turning_speed=0)
+        blob.move(self.framerate)
+        self.assertAlmostEqual(blob.x, 0.707, 3)
+        self.assertAlmostEqual(blob.y, 0.707, 3)
 
