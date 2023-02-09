@@ -1,4 +1,4 @@
-from math import sin, cos
+import math
 
 class Life:
     x: float  # in meters
@@ -17,5 +17,6 @@ class Life:
 
     def move(self, framerate: float):
         #self.orientation = self.orientation + self.turning_speed
-        self.x += framerate*cos(self.orientation)
+        self.x += framerate*math.cos(math.radians(self.orientation))
+        self.y += framerate*math.sin(math.radians(self.orientation))
 
