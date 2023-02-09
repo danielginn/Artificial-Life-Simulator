@@ -25,3 +25,8 @@ class TestLife(TestCase):
         self.assertAlmostEqual(blob.x, 0.707, 3)
         self.assertAlmostEqual(blob.y, 0.707, 3)
 
+    def test_should_move_2_meters_to_right(self):
+        blob = Life(x=0, y=0, orientation=0, speed=2, turning_speed=0)
+        blob.move(self.framerate)
+        self.assertAlmostEqual(blob.x, 2, 3)
+        self.assertAlmostEqual(blob.y, 0, 3)
