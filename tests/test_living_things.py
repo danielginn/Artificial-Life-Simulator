@@ -63,3 +63,15 @@ class TestLife(TestCase):
         blob = Life(x=0, y=0, heading=-170, speed=1, turning_speed=-375)
         blob.move(self.framerate)
         self.assertAlmostEqual(blob.heading, 175, 1)
+
+    def test_turning_speed_should_be_set_to_10(self):
+        blob = Life(x=0, y=0, heading=0, speed=1, turning_speed=0)
+        blob.turn(new_turn_speed=10)
+        self.assertAlmostEqual(blob.turning_speed, 10, 1)
+
+    def test_turning_speed_should_be_no_more_than_max_turning_speed(self):
+        blob = Life(x=0, y=0, heading=0, speed=1, turning_speed=0, max_turn_speed=10)
+        blob.turn(new_turn_speed=50)
+        self.assertAlmostEqual(blob.turning_speed, 10, 1)
+        blob.turn(new_turn_speed=-50)
+        self.assertAlmostEqual(blob.turning_speed, -10, 1)
