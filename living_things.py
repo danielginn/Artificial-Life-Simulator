@@ -23,3 +23,6 @@ class Life:
             self.turning_speed = -self.max_turn_speed
         else:
             self.turning_speed = new_turn_speed
+
+    def set_speed(self, new_speed:float):
+        self.speed = new_speed
