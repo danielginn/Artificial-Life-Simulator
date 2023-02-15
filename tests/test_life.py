@@ -34,5 +34,18 @@ class TestLife(TestCase):
         animal.time_update()
         self.assertEqual(animal.health, 51)
 
-    
+    def test_should_loose_1hp_per_turn_when_fully_hungry(self):
+        genes = {'initial_size': 2.0, 'initial_metabolic_rate': 0, 'initial_grow_rate': 1.0}
+        animal = Life(genes=genes, birth_time=0)
+        animal.hunger = 100
+        animal.time_update()
+        self.assertEqual(animal.health, 99)
 
+    def test_should_not_grow_or_heal_when_fully_hungry(self):
+        genes = {'initial_size': 2.0, 'initial_metabolic_rate': 0, 'initial_grow_rate': 1.0}
+        animal = Life(genes=genes, birth_time=0)
+        animal.hunger = 100
+        animal.health = 50
+        animal.time_update()
+        self.assertEqual(animal.health, 49)
+        self.assertAlmostEqual(animal.size, 2.0, 1)
