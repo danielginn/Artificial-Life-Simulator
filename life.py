@@ -4,7 +4,7 @@ class Life:
 
     def __init__(self, genes: dict, birth_time: int):
         self.genes = genes
-        self.health = genes['initial_health']  # percentage
+        self.health = 100  # percentage
         self.hunger = 100  # percentage
         self.metabolic_rate = genes['initial_metabolic_rate']  # rate at which hunger is converted to other uses
         self.size = genes['initial_size']  # diameter of organism
@@ -13,6 +13,15 @@ class Life:
 
     def time_update(self) -> None:
         self.grow()
+        self.heal()
 
     def grow(self) -> None:
-        self.size += self.grow_rate
+        if self.health < 100:
+            self.size += self.grow_rate/2
+        else:
+            self.size += self.grow_rate
+
+    def heal(self):
+        if self.health < 100:
+            self.health += 1
+
