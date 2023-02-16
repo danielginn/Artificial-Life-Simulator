@@ -84,3 +84,13 @@ class TestLife(TestCase):
         animal.eat(amount=70.0)
         self.assertAlmostEqual(animal.hunger, 0.0, 1)
 
+    def test_birth_should_return_genes(self):
+        genes = {'initial_size': 2.0, 'initial_metabolic_rate': 0.5, 'initial_grow_rate': 0.0}
+        animal = Life(genes=genes, birth_time=0)
+        child_genes = animal.give_birth()
+        self.assertDictEqual(genes, child_genes)
+
+
+
+
+

@@ -10,10 +10,12 @@ class Life:
         self.metabolic_rate = genes['initial_metabolic_rate'] + self.grow_rate  # rate at which hunger is consumed
         self.size = genes['initial_size']  # diameter of organism
         self.birth_time = birth_time  # clock date organism was created
+        self.age = 0
         self.is_dead = False
 
     def time_update(self) -> None:
         if not self.is_dead:
+            self.age += 1
             self.metabolize()
             self.grow()
             self.heal()
@@ -57,6 +59,10 @@ class Life:
         self.hunger = max(0.0, self.hunger-amount)
         self.hunger = min(100.0, self.hunger)
 
+    def give_birth(self) -> dict:
+        return self.genes
+
+
     # it can:
     # 1. grow
     # 2. heal
@@ -66,4 +72,5 @@ class Life:
     # 6. metabolize hunger
     # 7. can die
     # 8. can eat
+    # 9. can give birth
 
