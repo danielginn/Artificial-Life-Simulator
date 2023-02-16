@@ -53,6 +53,10 @@ class Life:
     def get_is_dead(self) -> bool:
         return self.is_dead
 
+    def eat(self, amount: float) -> None:
+        self.hunger = max(0.0, self.hunger-amount)
+        self.hunger = min(100.0, self.hunger)
+
     # it can:
     # 1. grow
     # 2. heal
@@ -61,4 +65,5 @@ class Life:
     # 5. not grow or heal when fully hungry
     # 6. metabolize hunger
     # 7. can die
+    # 8. can eat
 

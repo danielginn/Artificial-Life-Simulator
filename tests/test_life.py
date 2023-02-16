@@ -69,3 +69,18 @@ class TestLife(TestCase):
         animal.hunger = 100.0
         animal.time_update()
         self.assertEqual(animal.get_is_dead(), True)
+
+    def test_eating_should_reduce_hunger(self):
+        genes = {'initial_size': 2.0, 'initial_metabolic_rate': 0.5, 'initial_grow_rate': 0.0}
+        animal = Life(genes=genes, birth_time=0)
+        animal.hunger = 50.0
+        animal.eat(amount=10.0)
+        self.assertAlmostEqual(animal.hunger, 40.0, 1)
+
+    def test_overeating_not_possible(self):
+        genes = {'initial_size': 2.0, 'initial_metabolic_rate': 0.5, 'initial_grow_rate': 0.0}
+        animal = Life(genes=genes, birth_time=0)
+        animal.hunger = 50.0
+        animal.eat(amount=70.0)
+        self.assertAlmostEqual(animal.hunger, 0.0, 1)
+
