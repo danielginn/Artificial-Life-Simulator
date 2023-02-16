@@ -61,3 +61,11 @@ class TestLife(TestCase):
         animal = Life(genes=genes, birth_time=0)
         animal.time_update()
         self.assertAlmostEqual(animal.hunger, 1.0, 1)
+
+    def test_falling_below_0_health_is_death(self):
+        genes = {'initial_size': 2.0, 'initial_metabolic_rate': 0.5, 'initial_grow_rate': 0.0}
+        animal = Life(genes=genes, birth_time=0)
+        animal.health = 1.0
+        animal.hunger = 100.0
+        animal.time_update()
+        self.assertEqual(animal.get_is_dead(), True)
