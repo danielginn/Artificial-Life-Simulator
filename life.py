@@ -72,5 +72,5 @@ class Life:
     # 6. metabolize hunger
     # 7. can die
     # 8. can eat
-    # 9. can give birth
+    # 9. can pass on its genes
 
