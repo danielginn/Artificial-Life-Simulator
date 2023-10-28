@@ -3,23 +3,28 @@ from simucell import SimuCell
 import numpy as np
 from world import World
 import random
+import yaml
 
-pygame.init()
+with open('engine.yml', 'r') as file:
+    config = yaml.safe_load(file)
 world = World()
+pygame.init()
+
 SCREEN_WIDTH = world.width
 SCREEN_HEIGHT = world.height
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
-FRAME_RATE = 30
+frame_rate = int(config['frame_rate'])
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-num_simucells = 50
+num_simucells = int(config['num_simucells'])
 simucells = []
 for i in range(num_simucells):
-    location = np.array([random.uniform(25.0,world.width), random.uniform(25.0,world.height)])
-    simucells.append(SimuCell(world, location, random.uniform(-180,180), size=10))
+    size = random.randint(10, 30)
+    location = np.array([random.uniform(size//2,world.width-size//2), random.uniform(size//2,world.height-size//2)])
+    simucells.append(SimuCell(world, location, random.uniform(-180,180), size=size))
     simucells[i].speed = random.uniform(5.0,15.0)
 
 run = True
@@ -34,6 +39,6 @@ while run:
             run = False
 
     pygame.display.update()
-    clock.tick(FRAME_RATE)
+    clock.tick(frame_rate)
 
 pygame.quit()
