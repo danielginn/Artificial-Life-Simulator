@@ -21,9 +21,18 @@ class SimuCell:
     def update_location(self) -> None:
         velocity = self.speed * np.array([cos(radians(self.heading)), sin(radians(self.heading))])
         self.location += velocity
-        if not self.world.boundary_check(self.location, self.size):
-            velocity *= -1
-            self.location += 2*velocity
+        boundary_check_code = self.world.boundary_check(self.location, self.size)
+        if boundary_check_code > 0:
+            self.location -= velocity
+            old_velocity = velocity.copy()
+            match boundary_check_code:
+                case 1:
+                    velocity[0] *= -1
+                case 2:
+                    velocity[1] *= -1
+                case 3:
+                    velocity *= -1
+            self.location += velocity
             self.update_heading(velocity)
 
     def update_heading(self, velocity: np.ndarray) -> None:
