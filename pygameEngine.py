@@ -8,7 +8,7 @@ import yaml
 
 with open('engine.yml', 'r') as file:
     config = yaml.safe_load(file)
-world = World()
+world = World('world.yml')
 pygame.init()
 
 SCREEN_WIDTH = world.width

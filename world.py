@@ -5,15 +5,15 @@ class World():
     width: int
     height: int
 
-    def __init__(self):
+    def __init__(self, filepath):
         try:
-            with open('world.yml', 'r') as file:
+            with open(filepath, 'r') as file:
                 world = yaml.safe_load(file)
             self.width = int(world['width'])
             self.height = int(world['height'])
             file.close()
         except FileNotFoundError:
-            msg = "Sorry, the world.yml file does not exist."
+            msg = "Sorry, the {} file does not exist.".format(filepath)
             print(msg)
     def boundary_check(self, location: np.ndarray, size: int) -> int:
         result = 0
